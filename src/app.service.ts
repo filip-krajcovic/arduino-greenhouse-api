@@ -4,6 +4,8 @@ import { MqttClient } from 'mqtt';
 import { Events } from './mqtt/mqtt.enums';
 import { MessageService } from './messages/message.service';
 import { IMessage } from './messages/message.interface';
+import { ConfigService } from '@nestjs/config';
+import { ENV } from './app.constants';
 
 @Injectable()
 export class AppService {
@@ -11,6 +13,7 @@ export class AppService {
     @Inject(MQTT_CLIENT)
     private readonly mqttClient: MqttClient,
     private readonly messageService: MessageService,
+    private readonly configService: ConfigService,
   ) {
 
     this.mqttClient.on(Events.connect, () =>
@@ -37,6 +40,8 @@ export class AppService {
   }
 
   getHello(): string {
-    return 'Hello World!';
+    return `${this.configService.get(
+      ENV.APP_TITLE,
+    )} is running... <a href="/docs">Swagger API</a>`;
   }
 }
