@@ -18,7 +18,7 @@ export class AppService {
       Logger.log(`Topic ${topic}. Received message ${message.toString()}`, MqttClient.name);
     });
 
-    this.mqttClient.subscribe(['temperature']);
+    //this.mqttClient.subscribe(['temperature']);
   }
   
   getHello(): string {

@@ -5,7 +5,6 @@ import {
   Get,
   HttpCode,
   Param,
-  Patch,
   Post,
 } from '@nestjs/common';
 import {
@@ -14,6 +13,7 @@ import {
   ApiOperation,
   ApiTags,
   ApiBody,
+  ApiExcludeEndpoint,
 } from '@nestjs/swagger';
 import { MessageService } from './message.service';
 import { API_DOC } from './message.constants';
@@ -33,6 +33,7 @@ export class MessageController {
     return this.messageService.find(filter, projection);
   }
 
+  @ApiExcludeEndpoint()
   @ApiOperation(API_DOC.operation.findById)
   @ApiOkResponse({ ...API_DOC.responseOk.findById, type: Message })
   @Get(':id')
@@ -49,6 +50,7 @@ export class MessageController {
     return this.messageService.create(dto);
   }
 
+  @ApiExcludeEndpoint()
   @ApiOperation(API_DOC.operation.delete)
   @ApiOkResponse(API_DOC.responseOk.delete)
   @Delete(':id')

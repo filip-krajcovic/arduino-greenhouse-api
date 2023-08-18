@@ -8,6 +8,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { MessageModule } from './messages/message.module';
 import { MqttModule } from './mqtt/mqtt.module';
 import { HealthModule } from './health/health.module';
+import { TopicModule } from './topics/topic.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { HealthModule } from './health/health.module';
     HealthModule,
     MessageModule,
     MqttModule,
+    TopicModule,
   ],
   controllers: [AppController],
   providers: [
