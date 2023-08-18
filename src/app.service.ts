@@ -2,13 +2,16 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { MQTT_CLIENT } from './mqtt/mqtt.constants';
 import { MqttClient } from 'mqtt';
 import { Events } from './mqtt/mqtt.enums';
+import { MessageService } from './messages/message.service';
+import { IMessage } from './messages/message.interface';
 
 @Injectable()
 export class AppService {
 
   constructor(
     @Inject(MQTT_CLIENT)
-    private readonly mqttClient: MqttClient
+    private readonly mqttClient: MqttClient,
+    private readonly messageService: MessageService
   ) {
     //Logger.log(`AppService created ${mqtt.connected}`);
 
@@ -16,9 +19,17 @@ export class AppService {
 
     this.mqttClient.on(Events.message, (topic, message) => {
       Logger.log(`Topic ${topic}. Received message ${message.toString()}`, MqttClient.name);
+      
+      const messageData = JSON.parse(message.toString());
+
+      this.saveMessage(messageData);
     });
 
     //this.mqttClient.subscribe(['temperature']);
+  }
+
+  saveMessage(message: IMessage): Promise<IMessage> {
+    return this.messageService.create(message);
   }
   
   getHello(): string {
