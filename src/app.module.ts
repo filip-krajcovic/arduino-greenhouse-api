@@ -7,6 +7,7 @@ import { MongooseModuleFactory } from './data/mongoose.module.factory';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MessageModule } from './messages/message.module';
 import { MqttModule } from './mqtt/mqtt.module';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { MqttModule } from './mqtt/mqtt.module';
       useFactory: MongooseModuleFactory,
       inject: [ConfigService],
     }),
+    HealthModule,
     MessageModule,
     MqttModule,
   ],
