@@ -5,7 +5,7 @@ export class MongoGenericRepository<T> implements IGenericRepository<T> {
   private _model: Model<T>;
   private _projection: ProjectionType<any>;
 
-  constructor(model: Model<T>, projection: ProjectionType<any>) {
+  constructor(model: Model<T>, projection: ProjectionType<any> = null) {
     this._model = model;
     this._projection = projection;
   }

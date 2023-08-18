@@ -11,8 +11,4 @@ export class Message implements IMessage {
   @IsDateString()
   @ApiProperty(API_DOC.property.messageDto.timestamp)
   timestamp: Date;
-
-  @IsObject()
-  @ApiProperty(API_DOC.property.messageDto.data)
-  data: object;
 }

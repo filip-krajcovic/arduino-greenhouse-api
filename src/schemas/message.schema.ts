@@ -4,7 +4,7 @@ import { IMessage } from '../messages/message.interface';
 
 export type MessageDocument = Message & Document;
 
-@Schema()
+@Schema({ strict: false })
 export class Message implements IMessage {
   @Prop()
   id: string;
@@ -14,9 +14,6 @@ export class Message implements IMessage {
 
   @Prop()
   timestamp: Date;
-
-  @Prop({ type: Object })
-  data: any;
 }
 
 export const MessageSchema = SchemaFactory.createForClass(Message);

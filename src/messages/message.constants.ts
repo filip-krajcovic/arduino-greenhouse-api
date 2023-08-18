@@ -6,9 +6,6 @@ export enum PATTERNS {
 }
 
 export const SELECT_MESSAGES_PROJECTION = {
-  id: '$_id',
-  data: '$data',
-  timestamp: '$timestamp',
   _id: 0,
 };
 
@@ -62,7 +59,7 @@ export const API_DOC = {
       },
       timestamp: {
         description: 'Timestamp',
-        example: '2023-08-18 10:00:00',
+        example: '2023-08-18T08:00:00.000Z',
       },
       data: {
         description: 'Message data',

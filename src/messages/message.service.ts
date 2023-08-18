@@ -26,7 +26,8 @@ export class MessageService
   }
 
   async create(dto: IMessage): Promise<IMessage> {
-    return this.repository.create(dto);
+    const timestamp = new Date()
+    return this.repository.create({timestamp, ...dto});
   }
 
   find(
@@ -37,7 +38,7 @@ export class MessageService
   }
 
   findById(id: string): Promise<IMessage> {
-    return this.repository.findById(id, SELECT_MESSAGES_PROJECTION);
+    return this.repository.findById(id);//, SELECT_MESSAGES_PROJECTION);
   }
 
   delete(id: string): Promise<IMessage> {
