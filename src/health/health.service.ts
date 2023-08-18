@@ -4,9 +4,7 @@ import { IHealthService } from './health.service.interface';
 
 @Injectable()
 export class HealthService implements IHealthService {
-  constructor(
-    private health: HealthCheckService,
-  ) {}
+  constructor(private health: HealthCheckService) {}
 
   empty(): Promise<HealthCheckResult> {
     return this.health.check([]);

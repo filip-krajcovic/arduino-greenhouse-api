@@ -5,11 +5,10 @@ import { MQTT_CLIENT } from '../mqtt/mqtt.constants';
 import { MqttClient } from 'mqtt';
 
 @Injectable()
-export class TopicService implements ITopicService
-{
+export class TopicService implements ITopicService {
   constructor(
     @Inject(MQTT_CLIENT)
-    private readonly mqttClient: MqttClient
+    private readonly mqttClient: MqttClient,
   ) {}
 
   private topics: string[] = [];
@@ -32,6 +31,4 @@ export class TopicService implements ITopicService
     }
     return Promise.resolve(true);
   }
-
-  
 }

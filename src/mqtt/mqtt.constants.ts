@@ -1,4 +1,4 @@
-export const MQTT_CLIENT = 'MQTT_CLIENT'
+export const MQTT_CLIENT = 'MQTT_CLIENT';
 
 export const ENV = {
   MQTT_PROTOCOL: 'MQTT_PROTOCOL',
@@ -7,4 +7,4 @@ export const ENV = {
   MQTT_CLIENT_ID: 'MQTT_CLIENT_ID',
   MQTT_USERNAME: 'MQTT_USERNAME',
   MQTT_PASSWORD: 'MQTT_PASSWORD',
-}
+};

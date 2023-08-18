@@ -29,7 +29,7 @@ import { TopicModule } from './topics/topic.module';
   controllers: [AppController],
   providers: [
     //MqttClientProvider,
-    AppService
+    AppService,
   ],
 })
-export class AppModule { }
+export class AppModule {}

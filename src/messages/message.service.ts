@@ -8,9 +8,7 @@ import { Message } from '../schemas/message.schema';
 import { MongoGenericRepository } from '../data/mongo-generic-repository';
 
 @Injectable()
-export class MessageService
-  implements IMessageService, OnApplicationBootstrap
-{
+export class MessageService implements IMessageService, OnApplicationBootstrap {
   private repository: MongoGenericRepository<IMessage>;
 
   constructor(
@@ -26,8 +24,8 @@ export class MessageService
   }
 
   async create(dto: IMessage): Promise<IMessage> {
-    const timestamp = new Date()
-    return this.repository.create({timestamp, ...dto});
+    const timestamp = new Date();
+    return this.repository.create({ timestamp, ...dto });
   }
 
   find(
@@ -38,7 +36,7 @@ export class MessageService
   }
 
   findById(id: string): Promise<IMessage> {
-    return this.repository.findById(id);//, SELECT_MESSAGES_PROJECTION);
+    return this.repository.findById(id);
   }
 
   delete(id: string): Promise<IMessage> {

@@ -1,7 +1,7 @@
 import { Provider, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { MQTT_CLIENT, ENV } from './mqtt.constants';
-import { IClientOptions, MqttClient, connect } from "mqtt";
+import { IClientOptions, MqttClient, connect } from 'mqtt';
 import { Events } from './mqtt.enums';
 
 const mqttClientProvider = (configService: ConfigService): MqttClient => {
@@ -29,8 +29,8 @@ const mqttClientProvider = (configService: ConfigService): MqttClient => {
   const client = connect(config);
 
   client.on(Events.connect, () => Logger.log('MQTT client connected', self));
-  
-  client.on(Events.error, (error) => Logger.error(error, self));
+
+  client.on(Events.error, error => Logger.error(error, self));
 
   return client;
 };

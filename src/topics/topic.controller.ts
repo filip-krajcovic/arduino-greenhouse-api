@@ -1,16 +1,5 @@
-import {
-  Body,
-  Controller,
-  Post,
-  Get,
-  HttpCode,
-} from '@nestjs/common';
-import {
-  ApiOkResponse,
-  ApiOperation,
-  ApiTags,
-  ApiBody,
-} from '@nestjs/swagger';
+import { Body, Controller, Post, Get, HttpCode } from '@nestjs/common';
+import { ApiOkResponse, ApiOperation, ApiTags, ApiBody } from '@nestjs/swagger';
 import { TopicService } from './topic.service';
 import { API_DOC } from './topic.constants';
 import { ITopic } from './topic.interface';

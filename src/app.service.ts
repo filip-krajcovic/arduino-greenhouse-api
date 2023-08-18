@@ -7,31 +7,35 @@ import { IMessage } from './messages/message.interface';
 
 @Injectable()
 export class AppService {
-
   constructor(
     @Inject(MQTT_CLIENT)
     private readonly mqttClient: MqttClient,
-    private readonly messageService: MessageService
+    private readonly messageService: MessageService,
   ) {
-    //Logger.log(`AppService created ${mqtt.connected}`);
 
-    this.mqttClient.on(Events.connect, () => Logger.log(`AppService created. Mqtt connected ${this.mqttClient.connected}`))
+    this.mqttClient.on(Events.connect, () =>
+      Logger.log(
+        `AppService created. Mqtt connected ${this.mqttClient.connected}`,
+      ),
+    );
 
     this.mqttClient.on(Events.message, (topic, message) => {
-      Logger.log(`Topic ${topic}. Received message ${message.toString()}`, MqttClient.name);
-      
+      Logger.log(
+        `Topic ${topic}. Received message ${message.toString()}`,
+        MqttClient.name,
+      );
+
       const messageData = JSON.parse(message.toString());
 
       this.saveMessage(messageData);
     });
 
-    //this.mqttClient.subscribe(['temperature']);
   }
 
   saveMessage(message: IMessage): Promise<IMessage> {
     return this.messageService.create(message);
   }
-  
+
   getHello(): string {
     return 'Hello World!';
   }

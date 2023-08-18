@@ -1,4 +1,4 @@
-import { ITopic } from "./topic.interface";
+import { ITopic } from './topic.interface';
 
 export interface ITopicService {
   getAll(): Promise<string[]>;

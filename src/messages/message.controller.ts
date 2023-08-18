@@ -29,7 +29,10 @@ export class MessageController {
   @ApiOperation(API_DOC.operation.find)
   @ApiOkResponse({ ...API_DOC.responseOk.find, type: Message })
   @Get()
-  find(filter: FilterQuery<IMessage>, projection?: ProjectionType<any>): Promise<Array<IMessage>> {
+  find(
+    filter: FilterQuery<IMessage>,
+    projection?: ProjectionType<any>,
+  ): Promise<Array<IMessage>> {
     return this.messageService.find(filter, projection);
   }
 

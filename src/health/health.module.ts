@@ -7,9 +7,6 @@ import { ConfigService } from '@nestjs/config';
 @Module({
   imports: [TerminusModule],
   controllers: [HealthController],
-  providers: [
-    HealthService,
-    ConfigService,
-  ],
+  providers: [HealthService, ConfigService],
 })
 export class HealthModule {}
