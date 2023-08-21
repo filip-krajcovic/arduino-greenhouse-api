@@ -7,7 +7,9 @@ import { ISoilMoistureService } from './soli-moisture.service.interface';
 import { MongoGenericRepository } from '../data/mongo-generic-repository';
 
 @Injectable()
-export class SoilMoistureService implements ISoilMoistureService, OnApplicationBootstrap {
+export class SoilMoistureService
+  implements ISoilMoistureService, OnApplicationBootstrap
+{
   private repository: MongoGenericRepository<ISoilMoisture>;
 
   constructor(

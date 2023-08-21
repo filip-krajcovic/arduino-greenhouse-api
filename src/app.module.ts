@@ -32,8 +32,6 @@ import { SoilMoistureModule } from './soli-moisture/soli-moisture.module';
     SoilMoistureModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-  ],
+  providers: [AppService],
 })
 export class AppModule {}

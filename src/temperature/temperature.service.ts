@@ -7,7 +7,9 @@ import { ITemperatureService } from './temperature.service.interface';
 import { MongoGenericRepository } from '../data/mongo-generic-repository';
 
 @Injectable()
-export class TemperatureService implements ITemperatureService, OnApplicationBootstrap {
+export class TemperatureService
+  implements ITemperatureService, OnApplicationBootstrap
+{
   private repository: MongoGenericRepository<ITemperature>;
 
   constructor(

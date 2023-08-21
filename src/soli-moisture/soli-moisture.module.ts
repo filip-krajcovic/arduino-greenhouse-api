@@ -6,7 +6,9 @@ import { SoilMoistureSchema } from 'src/schemas/soil-moisture.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'SoilMoisture', schema: SoilMoistureSchema }]),
+    MongooseModule.forFeature([
+      { name: 'SoilMoisture', schema: SoilMoistureSchema },
+    ]),
   ],
   controllers: [SoilMoistureController],
   providers: [SoilMoistureService],

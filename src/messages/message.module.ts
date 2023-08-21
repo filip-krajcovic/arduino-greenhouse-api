@@ -7,14 +7,14 @@ import { Message, MessageSchema } from '../schemas/message.schema';
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { 
-        name: Message.name, 
+      {
+        name: Message.name,
         schema: MessageSchema,
       },
-      { 
-        name: Message.name, 
+      {
+        name: Message.name,
         schema: MessageSchema,
-      }
+      },
     ]),
   ],
   controllers: [MessageController],

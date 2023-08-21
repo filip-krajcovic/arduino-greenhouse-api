@@ -6,7 +6,9 @@ import { TemperatureSchema } from 'src/schemas/temperature.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'Temperature', schema: TemperatureSchema }]),
+    MongooseModule.forFeature([
+      { name: 'Temperature', schema: TemperatureSchema },
+    ]),
   ],
   controllers: [TemperatureController],
   providers: [TemperatureService],

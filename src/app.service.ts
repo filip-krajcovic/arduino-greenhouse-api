@@ -26,7 +26,6 @@ export class AppService {
     private readonly temperatureService: TemperatureService,
     private readonly soilMoistureService: SoilMoistureService,
   ) {
-
     this.mqttClient.on(Events.connect, () =>
       Logger.log(
         `AppService created. Mqtt connected ${this.mqttClient.connected}`,
@@ -39,8 +38,9 @@ export class AppService {
 
     const topics = configService.get(ENV.TOPICS);
     if (topics && typeof topics === 'string') {
-      const topicNames: string[] = topics.indexOf(',') !== -1 ? topics.split(',') : [topics];
-      topicNames.forEach( topic => this.topicService.subscribe(topic));
+      const topicNames: string[] =
+        topics.indexOf(',') !== -1 ? topics.split(',') : [topics];
+      topicNames.forEach(topic => this.topicService.subscribe(topic));
     }
   }
 
@@ -52,35 +52,35 @@ export class AppService {
 
     const dto = JSON.parse(message.toString());
 
-    switch(topic) { 
+    switch (topic) {
       case Topics.humidity: {
         const humidity = dto;
         const value: IHumidity = { humidity };
         this.saveHumidity(value);
         this.saveMessage(value);
-        break; 
-      } 
+        break;
+      }
       case Topics.temperature: {
         const temperature = dto;
         const value: ITemperature = { temperature };
         this.saveTemperature(value);
         this.saveMessage(value);
-        break; 
+        break;
       }
-      case Topics.soilMoisture: { 
+      case Topics.soilMoisture: {
         const soilMoisture = dto;
         const value: ISoilMoisture = { soilMoisture };
         this.saveSoilMoisture(value);
         this.saveMessage(value);
-        break; 
+        break;
       }
-      case Topics.message: { 
+      case Topics.message: {
         this.saveMessage(dto);
-        break; 
-      } 
-      default: { 
-        this.saveMessage(dto); 
-         break; 
+        break;
+      }
+      default: {
+        this.saveMessage(dto);
+        break;
       }
     }
   }

@@ -7,7 +7,9 @@ import { IHumidityService } from './humidity.service.interface';
 import { MongoGenericRepository } from '../data/mongo-generic-repository';
 
 @Injectable()
-export class HumidityService implements IHumidityService, OnApplicationBootstrap {
+export class HumidityService
+  implements IHumidityService, OnApplicationBootstrap
+{
   private repository: MongoGenericRepository<IHumidity>;
 
   constructor(
