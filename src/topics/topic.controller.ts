@@ -24,7 +24,7 @@ export class TopicController {
   @Post('subscribe')
   @HttpCode(200)
   subscribe(@Body() dto: ITopic): Promise<boolean> {
-    return this.topicService.subscribe(dto);
+    return this.topicService.subscribe(dto.name);
   }
 
   @ApiOperation({ ...API_DOC.operation.unsubscribe })
@@ -33,6 +33,6 @@ export class TopicController {
   @Post('unsubscribe')
   @HttpCode(200)
   unsubscribe(@Body() dto: ITopic): Promise<boolean> {
-    return this.topicService.unsubscribe(dto);
+    return this.topicService.unsubscribe(dto.name);
   }
 }

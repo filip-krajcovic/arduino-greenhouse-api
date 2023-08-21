@@ -19,6 +19,7 @@ export enum ENV {
   API_PREFIX = 'API_PREFIX',
   API_DOCS_PATH = 'API_DOCS_PATH',
   REMOTE_API_URL = 'REMOTE_API_URL',
+  TOPICS = 'TOPICS',
 }
 
 export const LOG_SEPARATOR = '------------------------------------------------';

@@ -1,4 +1,4 @@
 export interface IHumidity {
   humidity: Number;
-  timestamp: Date;
+  timestamp?: Date;
 }

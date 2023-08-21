@@ -1,3 +1,3 @@
 export interface IMessage {
-  timestamp: Date;
+  timestamp?: Date;
 }

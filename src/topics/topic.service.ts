@@ -17,15 +17,15 @@ export class TopicService implements ITopicService {
     return Promise.resolve(this.topics);
   }
 
-  subscribe(topic: ITopic): Promise<boolean> {
-    this.mqttClient.subscribeAsync(topic.name);
-    this.topics.push(topic.name);
+  subscribe(topic: string): Promise<boolean> {
+    this.mqttClient.subscribeAsync(topic);
+    this.topics.push(topic);
     return Promise.resolve(true);
   }
 
-  unsubscribe(topic: ITopic): Promise<boolean> {
-    this.mqttClient.unsubscribeAsync(topic.name);
-    const index = this.topics.indexOf(topic.name);
+  unsubscribe(topic: string): Promise<boolean> {
+    this.mqttClient.unsubscribeAsync(topic);
+    const index = this.topics.indexOf(topic);
     if (index != -1) {
       this.topics.splice(index, 1);
     }

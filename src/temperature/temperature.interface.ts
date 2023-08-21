@@ -1,4 +1,4 @@
 export interface ITemperature {
   temperature: Number;
-  timestamp: Date;
+  timestamp?: Date;
 }
