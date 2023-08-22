@@ -2,7 +2,7 @@
   "name": "arduino-greenhouse-api",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "filipkrajcovic",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

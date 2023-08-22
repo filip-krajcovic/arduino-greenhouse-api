@@ -1,0 +1,45 @@
+name: docker-build
+
+on:
+  push:
+    branches:
+      - "main"
+    paths-ignore:
+    - '.github/**/*.yml'
+    - '.gitignore'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Read package.json
+        run: |
+          echo 'PACKAGE_JSON<<EOF' >> $GITHUB_ENV
+          cat ./package.json >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+      -
+        name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ${{ fromJson(env.PACKAGE_JSON).author }}/${{ fromJson(env.PACKAGE_JSON).name }}:latest
+            ${{ fromJson(env.PACKAGE_JSON).author }}/${{ fromJson(env.PACKAGE_JSON).name }}:${{ fromJson(env.PACKAGE_JSON).version }}
