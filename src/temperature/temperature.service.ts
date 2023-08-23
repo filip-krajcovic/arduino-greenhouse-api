@@ -1,10 +1,11 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { FilterQuery, Model, ProjectionType } from 'mongoose';
+import { FilterQuery, Model, ProjectionType, SortOrder } from 'mongoose';
 import { SELECT_TEMPERATURE_PROJECTION } from './temperature.constants';
 import { ITemperature } from './temperature.interface';
 import { ITemperatureService } from './temperature.service.interface';
 import { MongoGenericRepository } from '../data/mongo-generic-repository';
+import { Temperature } from '../schemas/temperature.schema';
 
 @Injectable()
 export class TemperatureService
@@ -13,7 +14,7 @@ export class TemperatureService
   private repository: MongoGenericRepository<ITemperature>;
 
   constructor(
-    @InjectModel('Temperature')
+    @InjectModel(Temperature.name)
     private readonly model: Model<ITemperature>,
   ) {}
 
@@ -34,6 +35,14 @@ export class TemperatureService
     projection?: ProjectionType<any>,
   ): Promise<Array<ITemperature>> {
     return this.repository.find(filter, projection);
+  }
+
+  findOne(
+    filter: FilterQuery<ITemperature>,
+    projection?: ProjectionType<any>,
+    sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+  ): Promise<ITemperature> {
+    return this.repository.findOne(filter, projection, sort);
   }
 
   findById(id: string): Promise<ITemperature> {

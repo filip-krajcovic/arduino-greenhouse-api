@@ -21,6 +21,11 @@ export const API_DOC = {
       summary: 'Returns the requested soil moisture by id',
       description: 'Returns the requested soil moisture by id',
     },
+    findLast: {
+      operationId: 'findLastSoilMoisture',
+      summary: 'Returns the last soil moisture',
+      description: 'Returns the last soil moisture',
+    },
     create: {
       operationId: 'createSoilMoisture',
       summary: 'Creates a new soil moisture',
@@ -40,6 +45,10 @@ export const API_DOC = {
     },
     findById: {
       description: 'The soil moisture record',
+      status: 200,
+    },
+    findLast: {
+      description: 'The last soil moisture record',
       status: 200,
     },
     create: {

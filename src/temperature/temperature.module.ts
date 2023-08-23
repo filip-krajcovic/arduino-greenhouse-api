@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TemperatureController } from './temperature.controller';
 import { TemperatureService } from './temperature.service';
-import { TemperatureSchema } from 'src/schemas/temperature.schema';
+import { Temperature, TemperatureSchema } from '../schemas/temperature.schema';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: 'Temperature', schema: TemperatureSchema },
+      { name: Temperature.name, schema: TemperatureSchema },
     ]),
   ],
   controllers: [TemperatureController],

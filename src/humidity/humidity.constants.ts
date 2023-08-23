@@ -21,6 +21,11 @@ export const API_DOC = {
       summary: 'Returns the requested humidity by id',
       description: 'Returns the requested humidity by id',
     },
+    findLast: {
+      operationId: 'findLastHumidity',
+      summary: 'Returns the last humidity',
+      description: 'Returns the last humidity',
+    },
     create: {
       operationId: 'createHumidity',
       summary: 'Creates a new humidity',
@@ -40,6 +45,10 @@ export const API_DOC = {
     },
     findById: {
       description: 'The humidity record',
+      status: 200,
+    },
+    findLast: {
+      description: 'The last humidity record',
       status: 200,
     },
     create: {

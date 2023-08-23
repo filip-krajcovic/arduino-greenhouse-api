@@ -1,4 +1,4 @@
-import { FilterQuery, Model, ProjectionType } from 'mongoose';
+import { FilterQuery, Model, ProjectionType, SortOrder } from 'mongoose';
 import { IGenericRepository } from './generic-repository.interface';
 
 export class MongoGenericRepository<T> implements IGenericRepository<T> {
@@ -13,15 +13,17 @@ export class MongoGenericRepository<T> implements IGenericRepository<T> {
   find(
     filter: FilterQuery<T>,
     projection: ProjectionType<any> = null,
+    sort: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null = null,
   ): Promise<T[]> {
-    return this._model.find(filter, projection || this._projection).exec();
+    return this._model.find(filter, projection || this._projection).sort(sort).exec();
   }
 
   findOne(
     filter: FilterQuery<T>,
     projection: ProjectionType<any> = null,
+    sort: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null = null,
   ): Promise<T> {
-    return this._model.findOne(filter, projection || this._projection).exec();
+    return this._model.findOne(filter, projection || this._projection).sort(sort).exec();
   }
 
   findById(id: any, projection: ProjectionType<any> = null): Promise<T> {

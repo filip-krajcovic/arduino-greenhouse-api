@@ -36,12 +36,12 @@ export class TemperatureController {
     return this.temperatureService.find(filter, projection);
   }
 
-  @ApiExcludeEndpoint()
-  @ApiOperation(API_DOC.operation.findById)
-  @ApiOkResponse({ ...API_DOC.responseOk.findById, type: Temperature })
-  @Get(':id')
-  findById(@Param('id') id: string): Promise<ITemperature> {
-    return this.temperatureService.findById(id);
+  @ApiOperation(API_DOC.operation.findLast)
+  @ApiOkResponse({ ...API_DOC.responseOk.findLast, type: Temperature })
+  @Get('last')
+  findLast(
+  ): Promise<ITemperature> {
+    return this.temperatureService.findOne(null, { temperature: 1, _id: 0 }, { timestamp: -1 });
   }
 
   @ApiOperation({ ...API_DOC.operation.create })

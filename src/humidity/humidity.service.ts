@@ -1,10 +1,11 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { FilterQuery, Model, ProjectionType } from 'mongoose';
+import { FilterQuery, Model, ProjectionType, SortOrder } from 'mongoose';
 import { SELECT_HUMIDITY_PROJECTION } from './humidity.constants';
 import { IHumidity } from './humidity.interface';
 import { IHumidityService } from './humidity.service.interface';
 import { MongoGenericRepository } from '../data/mongo-generic-repository';
+import { Humidity } from '../schemas/humidity.schema';
 
 @Injectable()
 export class HumidityService
@@ -13,7 +14,7 @@ export class HumidityService
   private repository: MongoGenericRepository<IHumidity>;
 
   constructor(
-    @InjectModel('Humidity')
+    @InjectModel(Humidity.name)
     private readonly model: Model<IHumidity>,
   ) {}
 
@@ -34,6 +35,14 @@ export class HumidityService
     projection?: ProjectionType<any>,
   ): Promise<Array<IHumidity>> {
     return this.repository.find(filter, projection);
+  }
+
+  findOne(
+    filter: FilterQuery<IHumidity>,
+    projection?: ProjectionType<any>,
+    sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+  ): Promise<IHumidity> {
+    return this.repository.findOne(filter, projection, sort);
   }
 
   findById(id: string): Promise<IHumidity> {

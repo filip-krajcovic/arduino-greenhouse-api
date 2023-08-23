@@ -21,6 +21,11 @@ export const API_DOC = {
       summary: 'Returns the requested temperature by id',
       description: 'Returns the requested temperature by id',
     },
+    findLast: {
+      operationId: 'findLastTemperature',
+      summary: 'Returns the last temperature',
+      description: 'Returns the last temperature',
+    },
     create: {
       operationId: 'createTemperature',
       summary: 'Creates a new temperature',
@@ -40,6 +45,10 @@ export const API_DOC = {
     },
     findById: {
       description: 'The temperature record',
+      status: 200,
+    },
+    findLast: {
+      description: 'The last temperature record',
       status: 200,
     },
     create: {
