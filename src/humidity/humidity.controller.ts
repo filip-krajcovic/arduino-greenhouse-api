@@ -36,12 +36,12 @@ export class HumidityController {
     return this.humidityService.find(filter, projection);
   }
 
-  @ApiExcludeEndpoint()
-  @ApiOperation(API_DOC.operation.findById)
-  @ApiOkResponse({ ...API_DOC.responseOk.findById, type: Humidity })
-  @Get(':id')
-  findById(@Param('id') id: string): Promise<IHumidity> {
-    return this.humidityService.findById(id);
+  @ApiOperation(API_DOC.operation.findLast)
+  @ApiOkResponse({ ...API_DOC.responseOk.findLast, type: Humidity })
+  @Get('last')
+  findLast(
+  ): Promise<IHumidity> {
+    return this.humidityService.findOne(null, { humidity: 1, _id: 0 }, { timestamp: -1 });
   }
 
   @ApiOperation({ ...API_DOC.operation.create })

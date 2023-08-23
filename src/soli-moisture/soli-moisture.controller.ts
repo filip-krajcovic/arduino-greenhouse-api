@@ -36,12 +36,12 @@ export class SoilMoistureController {
     return this.soilMoistureService.find(filter, projection);
   }
 
-  @ApiExcludeEndpoint()
-  @ApiOperation(API_DOC.operation.findById)
-  @ApiOkResponse({ ...API_DOC.responseOk.findById, type: SoilMoisture })
-  @Get(':id')
-  findById(@Param('id') id: string): Promise<ISoilMoisture> {
-    return this.soilMoistureService.findById(id);
+  @ApiOperation(API_DOC.operation.findLast)
+  @ApiOkResponse({ ...API_DOC.responseOk.findLast, type: SoilMoisture })
+  @Get('last')
+  findLast(
+  ): Promise<ISoilMoisture> {
+    return this.soilMoistureService.findOne(null, { soilMoisture: 1, _id: 0 }, { timestamp: -1 });
   }
 
   @ApiOperation({ ...API_DOC.operation.create })
