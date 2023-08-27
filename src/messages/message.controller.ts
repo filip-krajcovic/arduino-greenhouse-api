@@ -33,7 +33,7 @@ export class MessageController {
     filter: FilterQuery<IMessage>,
     projection?: ProjectionType<any>,
   ): Promise<Array<IMessage>> {
-    return this.messageService.find(filter, projection);
+    return this.messageService.find(filter, projection, { timestamp: -1 });
   }
 
   @ApiExcludeEndpoint()
