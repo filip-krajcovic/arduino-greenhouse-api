@@ -11,6 +11,7 @@ import { TopicModule } from './topics/topic.module';
 import { HumidityModule } from './humidity/humidity.module';
 import { TemperatureModule } from './temperature/temperature.module';
 import { SoilMoistureModule } from './soli-moisture/soli-moisture.module';
+import { DeviceModule } from './devices/device.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { SoilMoistureModule } from './soli-moisture/soli-moisture.module';
     HumidityModule,
     TemperatureModule,
     SoilMoistureModule,
+    DeviceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
