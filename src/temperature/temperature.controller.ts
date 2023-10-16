@@ -41,7 +41,7 @@ export class TemperatureController {
   @Get('last')
   findLast(
   ): Promise<ITemperature> {
-    return this.temperatureService.findOne(null, { temperature: 1, _id: 0 }, { timestamp: -1 });
+    return this.temperatureService.findOne(null, { temperature: 1, timestamp: 1, _id: 0 }, { timestamp: -1 });
   }
 
   @ApiOperation({ ...API_DOC.operation.create })

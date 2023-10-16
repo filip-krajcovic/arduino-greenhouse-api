@@ -41,7 +41,7 @@ export class HumidityController {
   @Get('last')
   findLast(
   ): Promise<IHumidity> {
-    return this.humidityService.findOne(null, { humidity: 1, _id: 0 }, { timestamp: -1 });
+    return this.humidityService.findOne(null, { humidity: 1, timestamp: 1,_id: 0 }, { timestamp: -1 });
   }
 
   @ApiOperation({ ...API_DOC.operation.create })
