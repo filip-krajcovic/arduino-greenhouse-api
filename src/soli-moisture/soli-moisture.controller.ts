@@ -41,7 +41,7 @@ export class SoilMoistureController {
   @Get('last')
   findLast(
   ): Promise<ISoilMoisture> {
-    return this.soilMoistureService.findOne(null, { soilMoisture: 1, _id: 0 }, { timestamp: -1 });
+    return this.soilMoistureService.findOne(null, { soilMoisture: 1, timestamp: 1, _id: 0 }, { timestamp: -1 });
   }
 
   @ApiOperation({ ...API_DOC.operation.create })
