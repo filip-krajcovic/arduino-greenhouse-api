@@ -32,8 +32,14 @@ export class MessageService implements IMessageService, OnApplicationBootstrap {
     filter: FilterQuery<IMessage>,
     projection?: ProjectionType<any>,
     sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+    skip?: number,
+    limit?: number,
   ): Promise<Array<IMessage>> {
-    return this.repository.find(filter, projection, sort);
+    return this.repository.find(filter, projection, sort, skip, limit);
+  }
+
+  count(filter: FilterQuery<IMessage>): Promise<number> {
+    return this.repository.count(filter);
   }
 
   findById(id: string): Promise<IMessage> {
