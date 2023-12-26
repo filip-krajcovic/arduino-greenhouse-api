@@ -16,6 +16,11 @@ export const API_DOC = {
       summary: 'Returns messages',
       description: 'Returns the list of messages',
     },
+    count: {
+      operationId: 'countMessages',
+      summary: 'Returns number of messages',
+      description: 'Returns number of messages',
+    },
     findById: {
       operationId: 'findMessageById',
       summary: 'Returns the requested message by id',
@@ -37,6 +42,10 @@ export const API_DOC = {
       description: 'The message records',
       status: 200,
       isArray: true,
+    },
+    count: {
+      description: 'The number of records',
+      status: 200,
     },
     findById: {
       description: 'The message record',

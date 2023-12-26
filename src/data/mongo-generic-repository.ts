@@ -14,8 +14,16 @@ export class MongoGenericRepository<T> implements IGenericRepository<T> {
     filter: FilterQuery<T>,
     projection: ProjectionType<any> = null,
     sort: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null = null,
+    skip: number = 0,
+    limit: number = 0,
   ): Promise<T[]> {
-    return this._model.find(filter, projection || this._projection).sort(sort).exec();
+    return this._model.find(filter, projection || this._projection).sort(sort).skip(skip).limit(limit).exec();
+  }
+
+  count(
+    filter: FilterQuery<T>,
+  ): Promise<number> {
+    return this._model.count(filter).exec();
   }
 
   findOne(
