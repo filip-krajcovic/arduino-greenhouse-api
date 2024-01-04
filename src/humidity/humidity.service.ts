@@ -33,8 +33,11 @@ export class HumidityService
   find(
     filter: FilterQuery<IHumidity>,
     projection?: ProjectionType<any>,
+    sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+    skip?: number,
+    limit?: number,
   ): Promise<Array<IHumidity>> {
-    return this.repository.find(filter, projection);
+    return this.repository.find(filter, projection, sort, skip, limit);
   }
 
   findOne(

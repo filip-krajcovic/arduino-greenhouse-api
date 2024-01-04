@@ -6,6 +6,7 @@ import {
   HttpCode,
   Param,
   Post,
+  Query,
 } from '@nestjs/common';
 import {
   ApiOkResponse,
@@ -14,12 +15,13 @@ import {
   ApiTags,
   ApiBody,
   ApiExcludeEndpoint,
+  ApiQuery,
 } from '@nestjs/swagger';
-import { HumidityService } from './humidity.service';
+
 import { API_DOC } from './humidity.constants';
-import { IHumidity } from './humidity.interface';
 import { Humidity } from './humidity.dto';
-import { FilterQuery, ProjectionType } from 'mongoose';
+import { IHumidity } from './humidity.interface';
+import { HumidityService } from './humidity.service';
 
 @ApiTags('Humidity')
 @Controller('humidity')
@@ -28,14 +30,17 @@ export class HumidityController {
 
   @ApiOperation(API_DOC.operation.find)
   @ApiOkResponse({ ...API_DOC.responseOk.find, type: Humidity })
+  @ApiQuery({ name: 'skip', required: false })
+  @ApiQuery({ name: 'limit', required: false })
   @Get()
   find(
-    filter: FilterQuery<IHumidity>,
-    projection?: ProjectionType<any>,
+    @Query('skip') skip?: number | null,
+    @Query('limit') limit?: number | null,
   ): Promise<Array<IHumidity>> {
-    return this.humidityService.find(filter, projection);
+    return this.humidityService.find(null, null, { timestamp: -1 }, skip, limit);
   }
 
+  @ApiExcludeEndpoint()
   @ApiOperation(API_DOC.operation.findLast)
   @ApiOkResponse({ ...API_DOC.responseOk.findLast, type: Humidity })
   @Get('last')

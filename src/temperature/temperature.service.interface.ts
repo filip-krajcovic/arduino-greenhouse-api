@@ -5,6 +5,9 @@ export interface ITemperatureService {
   find(
     filter: FilterQuery<ITemperature>,
     projection?: ProjectionType<any>,
+    sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+    skip?: number,
+    limit?: number,
   ): Promise<Array<ITemperature>>;
   findOne(
     filter: FilterQuery<ITemperature>,

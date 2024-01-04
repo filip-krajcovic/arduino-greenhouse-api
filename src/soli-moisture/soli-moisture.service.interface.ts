@@ -5,6 +5,9 @@ export interface ISoilMoistureService {
   find(
     filter: FilterQuery<ISoilMoisture>,
     projection?: ProjectionType<any>,
+    sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+    skip?: number,
+    limit?: number,
   ): Promise<Array<ISoilMoisture>>;
   findOne(
     filter: FilterQuery<ISoilMoisture>,
