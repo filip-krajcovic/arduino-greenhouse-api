@@ -6,6 +6,7 @@ import {
   HttpCode,
   Param,
   Post,
+  Query,
 } from '@nestjs/common';
 import {
   ApiOkResponse,
@@ -14,12 +15,12 @@ import {
   ApiTags,
   ApiBody,
   ApiExcludeEndpoint,
+  ApiQuery,
 } from '@nestjs/swagger';
 import { SoilMoistureService } from './soli-moisture.service';
 import { API_DOC } from './soli-moisture.constants';
 import { ISoilMoisture } from './soli-moisture.interface';
 import { SoilMoisture } from './soli-moisture.dto';
-import { FilterQuery, ProjectionType } from 'mongoose';
 
 @ApiTags('Soil moisture')
 @Controller('soilmoisture')
@@ -29,13 +30,16 @@ export class SoilMoistureController {
   @ApiOperation(API_DOC.operation.find)
   @ApiOkResponse({ ...API_DOC.responseOk.find, type: SoilMoisture })
   @Get()
+  @ApiQuery({ name: 'skip', required: false })
+  @ApiQuery({ name: 'limit', required: false })
   find(
-    filter: FilterQuery<ISoilMoisture>,
-    projection?: ProjectionType<any>,
+    @Query('skip') skip?: number | null,
+    @Query('limit') limit?: number | null,
   ): Promise<Array<ISoilMoisture>> {
-    return this.soilMoistureService.find(filter, projection);
+    return this.soilMoistureService.find(null, null, { timestamp: -1 }, skip, limit);
   }
 
+  @ApiExcludeEndpoint()
   @ApiOperation(API_DOC.operation.findLast)
   @ApiOkResponse({ ...API_DOC.responseOk.findLast, type: SoilMoisture })
   @Get('last')

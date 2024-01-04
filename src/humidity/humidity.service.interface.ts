@@ -5,6 +5,9 @@ export interface IHumidityService {
   find(
     filter: FilterQuery<IHumidity>,
     projection?: ProjectionType<any>,
+    sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+    skip?: number,
+    limit?: number,
   ): Promise<Array<IHumidity>>;
   findOne(
     filter: FilterQuery<IHumidity>,

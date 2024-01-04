@@ -17,10 +17,11 @@ import {
   ApiExcludeEndpoint,
   ApiQuery,
 } from '@nestjs/swagger';
-import { MessageService } from './message.service';
+
 import { API_DOC } from './message.constants';
-import { IMessage } from './message.interface';
 import { Message } from './message.dto';
+import { IMessage } from './message.interface';
+import { MessageService } from './message.service';
 
 @ApiTags('Messages')
 @Controller('messages')

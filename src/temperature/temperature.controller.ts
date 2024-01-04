@@ -6,6 +6,7 @@ import {
   HttpCode,
   Param,
   Post,
+  Query,
 } from '@nestjs/common';
 import {
   ApiOkResponse,
@@ -14,12 +15,12 @@ import {
   ApiTags,
   ApiBody,
   ApiExcludeEndpoint,
+  ApiQuery,
 } from '@nestjs/swagger';
 import { TemperatureService } from './temperature.service';
 import { API_DOC } from './temperature.constants';
 import { ITemperature } from './temperature.interface';
 import { Temperature } from './temperature.dto';
-import { FilterQuery, ProjectionType } from 'mongoose';
 
 @ApiTags('Temperature')
 @Controller('temperature')
@@ -28,14 +29,17 @@ export class TemperatureController {
 
   @ApiOperation(API_DOC.operation.find)
   @ApiOkResponse({ ...API_DOC.responseOk.find, type: Temperature })
+  @ApiQuery({ name: 'skip', required: false })
+  @ApiQuery({ name: 'limit', required: false })
   @Get()
   find(
-    filter: FilterQuery<ITemperature>,
-    projection?: ProjectionType<any>,
+    @Query('skip') skip?: number | null,
+    @Query('limit') limit?: number | null,
   ): Promise<Array<ITemperature>> {
-    return this.temperatureService.find(filter, projection);
+    return this.temperatureService.find(null, null, { timestamp: -1 }, skip, limit);
   }
 
+  @ApiExcludeEndpoint()
   @ApiOperation(API_DOC.operation.findLast)
   @ApiOkResponse({ ...API_DOC.responseOk.findLast, type: Temperature })
   @Get('last')
