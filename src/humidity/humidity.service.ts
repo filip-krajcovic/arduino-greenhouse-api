@@ -33,7 +33,12 @@ export class HumidityService
   find(
     filter: FilterQuery<IHumidity>,
     projection?: ProjectionType<any>,
-    sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+    sort?:
+      | string
+      | { [key: string]: SortOrder | { $meta: any } }
+      | [string, SortOrder][]
+      | undefined
+      | null,
     skip?: number,
     limit?: number,
   ): Promise<Array<IHumidity>> {
@@ -43,7 +48,12 @@ export class HumidityService
   findOne(
     filter: FilterQuery<IHumidity>,
     projection?: ProjectionType<any>,
-    sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+    sort?:
+      | string
+      | { [key: string]: SortOrder | { $meta: any } }
+      | [string, SortOrder][]
+      | undefined
+      | null,
   ): Promise<IHumidity> {
     return this.repository.findOne(filter, projection, sort);
   }

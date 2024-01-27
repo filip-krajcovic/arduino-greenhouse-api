@@ -13,9 +13,20 @@ import { IHumidity } from './humidity/humidity.interface';
 import { ITemperature } from './temperature/temperature.interface';
 import { ISoilMoisture } from './soli-moisture/soli-moisture.interface';
 import { TopicService } from './topics/topic.service';
+import { PumpService } from './pump/pump.service';
+import { WindowService } from './window/window.service';
+import { LightService } from './light/light.service';
+import { IPump } from './pump/pump.interface';
+import { IWindow } from './window/window.interface';
+import { ILight } from './light/light.interface';
+import { ScheduleService } from './schedule/schedule.service';
+import { ISchedule } from './schedule/schedule.interface';
 
 @Injectable()
 export class AppService {
+  private lastTopic: string;
+  private lastMessage: string;
+
   constructor(
     @Inject(MQTT_CLIENT)
     private readonly mqttClient: MqttClient,
@@ -25,6 +36,10 @@ export class AppService {
     private readonly humidityService: HumidityService,
     private readonly temperatureService: TemperatureService,
     private readonly soilMoistureService: SoilMoistureService,
+    private readonly pumpService: PumpService,
+    private readonly windowService: WindowService,
+    private readonly lightService: LightService,
+    private readonly scheduleService: ScheduleService,
   ) {
     this.mqttClient.on(Events.connect, () =>
       Logger.log(
@@ -44,13 +59,19 @@ export class AppService {
     }
   }
 
-  processMessage(topic: string, message: Buffer) {
-    Logger.log(
-      `Topic ${topic}. Received message ${message.toString()}`,
-      MqttClient.name,
-    );
+  processMessage(topic: string, buffer: Buffer) {
+    const message = buffer.toString();
 
-    const dto = JSON.parse(message.toString());
+    if (topic === this.lastTopic && message === this.lastMessage) {
+      return;
+    }
+
+    Logger.log(`Topic ${topic}. Received message ${message}`, MqttClient.name);
+
+    this.lastTopic = topic;
+    this.lastMessage = message;
+
+    const dto = JSON.parse(message);
 
     switch (topic) {
       case Topics.humidity: {
@@ -72,6 +93,34 @@ export class AppService {
         const value: ISoilMoisture = { soilMoisture };
         this.saveSoilMoisture(value);
         this.saveMessage(value);
+        break;
+      }
+      case Topics.pump: {
+        const value: IWindow = { state: dto };
+        this.savePump(value);
+        this.saveMessage(value);
+        break;
+      }
+      case Topics.window: {
+        const value: IWindow = { state: dto };
+        this.saveWindow(value);
+        this.saveMessage(value);
+        break;
+      }
+      case Topics.light: {
+        const value: ILight = { state: dto };
+        this.saveLight(value);
+        this.saveMessage(value);
+        break;
+      }
+      case Topics.timer: {
+        const value: ISchedule = {
+          hourOn: dto.hourOn,
+          minuteOn: dto.minuteOn,
+          hourOff: dto.hourOff,
+          minuteOff: dto.minuteOff,
+        };
+        this.saveSchedule(value);
         break;
       }
       case Topics.message: {
@@ -99,6 +148,37 @@ export class AppService {
 
   saveSoilMoisture(dto: ISoilMoisture): Promise<ISoilMoisture> {
     return this.soilMoistureService.create(dto);
+  }
+
+  savePump(dto: IPump): Promise<IPump> {
+    return this.pumpService.create(dto);
+  }
+
+  saveWindow(dto: IWindow): Promise<IWindow> {
+    return this.windowService.create(dto);
+  }
+
+  saveLight(dto: ILight): Promise<ILight> {
+    return this.lightService.create(dto);
+  }
+
+  async saveSchedule(dto: ISchedule): Promise<ISchedule> {
+    const schedule = await this.scheduleService.find(
+      null,
+      null,
+      { timestamp: -1 },
+      0,
+      1,
+    );
+    if (schedule?.length > 0 && schedule[0]?.id) {
+      const updatedValue = {
+        id: schedule[0]?.id,
+        ...dto,
+      };
+      return this.scheduleService.patch(updatedValue);
+    } else {
+      return this.scheduleService.create(dto);
+    }
   }
 
   getHello(): string {

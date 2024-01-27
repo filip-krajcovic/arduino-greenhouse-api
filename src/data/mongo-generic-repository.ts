@@ -13,25 +13,41 @@ export class MongoGenericRepository<T> implements IGenericRepository<T> {
   find(
     filter: FilterQuery<T>,
     projection: ProjectionType<any> = null,
-    sort: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null = null,
+    sort:
+      | string
+      | { [key: string]: SortOrder | { $meta: any } }
+      | [string, SortOrder][]
+      | undefined
+      | null = null,
     skip: number = 0,
     limit: number = 0,
   ): Promise<T[]> {
-    return this._model.find(filter, projection || this._projection).sort(sort).skip(skip).limit(limit).exec();
+    return this._model
+      .find(filter, projection || this._projection)
+      .sort(sort)
+      .skip(skip)
+      .limit(limit)
+      .exec();
   }
 
-  count(
-    filter: FilterQuery<T>,
-  ): Promise<number> {
+  count(filter: FilterQuery<T>): Promise<number> {
     return this._model.count(filter).exec();
   }
 
   findOne(
     filter: FilterQuery<T>,
     projection: ProjectionType<any> = null,
-    sort: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null = null,
+    sort:
+      | string
+      | { [key: string]: SortOrder | { $meta: any } }
+      | [string, SortOrder][]
+      | undefined
+      | null = null,
   ): Promise<T> {
-    return this._model.findOne(filter, projection || this._projection).sort(sort).exec();
+    return this._model
+      .findOne(filter, projection || this._projection)
+      .sort(sort)
+      .exec();
   }
 
   findById(id: any, projection: ProjectionType<any> = null): Promise<T> {

@@ -72,11 +72,11 @@ export const API_DOC = {
       },
       description: {
         description: 'Device description',
-        example: ''
+        example: '',
       },
       type: {
         description: 'Device type',
-        example: 'Arduino Uno R3'
+        example: 'Arduino Uno R3',
       },
     },
   },

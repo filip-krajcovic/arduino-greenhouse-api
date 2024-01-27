@@ -33,7 +33,12 @@ export class SoilMoistureService
   find(
     filter: FilterQuery<ISoilMoisture>,
     projection?: ProjectionType<any>,
-    sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+    sort?:
+      | string
+      | { [key: string]: SortOrder | { $meta: any } }
+      | [string, SortOrder][]
+      | undefined
+      | null,
     skip?: number,
     limit?: number,
   ): Promise<Array<ISoilMoisture>> {
@@ -43,7 +48,12 @@ export class SoilMoistureService
   findOne(
     filter: FilterQuery<ISoilMoisture>,
     projection?: ProjectionType<any>,
-    sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+    sort?:
+      | string
+      | { [key: string]: SortOrder | { $meta: any } }
+      | [string, SortOrder][]
+      | undefined
+      | null,
   ): Promise<ISoilMoisture> {
     return this.repository.findOne(filter, projection, sort);
   }

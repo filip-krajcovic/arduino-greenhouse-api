@@ -61,7 +61,7 @@ export const API_DOC = {
     },
   },
   property: {
-    humidityDto: {
+    temperatureDto: {
       id: {
         description: 'Temperature ID',
         example: '640717d62bbe359879440207',
