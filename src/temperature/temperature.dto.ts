@@ -5,14 +5,14 @@ import { ITemperature } from './temperature.interface';
 
 export class Temperature implements ITemperature {
   @IsString()
-  @ApiProperty(API_DOC.property.humidityDto.id)
+  @ApiProperty(API_DOC.property.temperatureDto.id)
   id: string;
 
   @IsNumber()
-  @ApiProperty(API_DOC.property.humidityDto.temperature)
-  temperature: Number;
+  @ApiProperty(API_DOC.property.temperatureDto.temperature)
+  temperature: number;
 
   @IsDateString()
-  @ApiProperty(API_DOC.property.humidityDto.timestamp)
+  @ApiProperty(API_DOC.property.temperatureDto.timestamp)
   timestamp: Date;
 }

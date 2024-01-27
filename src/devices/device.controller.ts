@@ -13,7 +13,6 @@ import {
   ApiOperation,
   ApiTags,
   ApiBody,
-  ApiExcludeEndpoint,
 } from '@nestjs/swagger';
 import { DeviceService } from './device.service';
 import { API_DOC } from './device.constants';

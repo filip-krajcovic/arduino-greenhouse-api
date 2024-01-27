@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDateString, IsObject, IsString } from 'class-validator';
+import { IsDateString, IsString } from 'class-validator';
 import { IMessage } from './message.interface';
 import { API_DOC } from './message.constants';
 

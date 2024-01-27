@@ -36,16 +36,25 @@ export class SoilMoistureController {
     @Query('skip') skip?: number | null,
     @Query('limit') limit?: number | null,
   ): Promise<Array<ISoilMoisture>> {
-    return this.soilMoistureService.find(null, null, { timestamp: -1 }, skip, limit);
+    return this.soilMoistureService.find(
+      null,
+      null,
+      { timestamp: -1 },
+      skip,
+      limit,
+    );
   }
 
   @ApiExcludeEndpoint()
   @ApiOperation(API_DOC.operation.findLast)
   @ApiOkResponse({ ...API_DOC.responseOk.findLast, type: SoilMoisture })
   @Get('last')
-  findLast(
-  ): Promise<ISoilMoisture> {
-    return this.soilMoistureService.findOne(null, { soilMoisture: 1, timestamp: 1, _id: 0 }, { timestamp: -1 });
+  findLast(): Promise<ISoilMoisture> {
+    return this.soilMoistureService.findOne(
+      null,
+      { soilMoisture: 1, timestamp: 1, _id: 0 },
+      { timestamp: -1 },
+    );
   }
 
   @ApiOperation({ ...API_DOC.operation.create })

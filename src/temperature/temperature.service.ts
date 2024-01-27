@@ -36,7 +36,12 @@ export class TemperatureService
   find(
     filter: FilterQuery<ITemperature>,
     projection?: ProjectionType<any>,
-    sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+    sort?:
+      | string
+      | { [key: string]: SortOrder | { $meta: any } }
+      | [string, SortOrder][]
+      | undefined
+      | null,
     skip?: number,
     limit?: number,
   ): Promise<Array<ITemperature>> {
@@ -46,7 +51,12 @@ export class TemperatureService
   findOne(
     filter: FilterQuery<ITemperature>,
     projection?: ProjectionType<any>,
-    sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+    sort?:
+      | string
+      | { [key: string]: SortOrder | { $meta: any } }
+      | [string, SortOrder][]
+      | undefined
+      | null,
   ): Promise<ITemperature> {
     return this.repository.findOne(filter, projection, sort);
   }

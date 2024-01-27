@@ -37,16 +37,25 @@ export class HumidityController {
     @Query('skip') skip?: number | null,
     @Query('limit') limit?: number | null,
   ): Promise<Array<IHumidity>> {
-    return this.humidityService.find(null, null, { timestamp: -1 }, skip, limit);
+    return this.humidityService.find(
+      null,
+      null,
+      { timestamp: -1 },
+      skip,
+      limit,
+    );
   }
 
   @ApiExcludeEndpoint()
   @ApiOperation(API_DOC.operation.findLast)
   @ApiOkResponse({ ...API_DOC.responseOk.findLast, type: Humidity })
   @Get('last')
-  findLast(
-  ): Promise<IHumidity> {
-    return this.humidityService.findOne(null, { humidity: 1, timestamp: 1,_id: 0 }, { timestamp: -1 });
+  findLast(): Promise<IHumidity> {
+    return this.humidityService.findOne(
+      null,
+      { humidity: 1, timestamp: 1, _id: 0 },
+      { timestamp: -1 },
+    );
   }
 
   @ApiOperation({ ...API_DOC.operation.create })

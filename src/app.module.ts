@@ -1,17 +1,23 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+
 import { MongooseModuleFactory } from './data/mongoose.module.factory';
-import { MongooseModule } from '@nestjs/mongoose';
+import { DeviceModule } from './devices/device.module';
+import { HealthModule } from './health/health.module';
+import { HumidityModule } from './humidity/humidity.module';
+import { LightModule } from './light/light.module';
 import { MessageModule } from './messages/message.module';
 import { MqttModule } from './mqtt/mqtt.module';
-import { HealthModule } from './health/health.module';
-import { TopicModule } from './topics/topic.module';
-import { HumidityModule } from './humidity/humidity.module';
-import { TemperatureModule } from './temperature/temperature.module';
+import { PumpModule } from './pump/pump.module';
 import { SoilMoistureModule } from './soli-moisture/soli-moisture.module';
-import { DeviceModule } from './devices/device.module';
+import { TemperatureModule } from './temperature/temperature.module';
+import { TopicModule } from './topics/topic.module';
+import { WindowModule } from './window/window.module';
+import { ScheduleModule } from './schedule/schedule.module';
 
 @Module({
   imports: [
@@ -32,6 +38,10 @@ import { DeviceModule } from './devices/device.module';
     TemperatureModule,
     SoilMoistureModule,
     DeviceModule,
+    PumpModule,
+    WindowModule,
+    LightModule,
+    ScheduleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

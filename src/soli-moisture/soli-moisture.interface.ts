@@ -1,4 +1,4 @@
 export interface ISoilMoisture {
-  soilMoisture: Number;
+  soilMoisture: number;
   timestamp?: Date;
 }

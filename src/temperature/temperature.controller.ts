@@ -36,16 +36,25 @@ export class TemperatureController {
     @Query('skip') skip?: number | null,
     @Query('limit') limit?: number | null,
   ): Promise<Array<ITemperature>> {
-    return this.temperatureService.find(null, null, { timestamp: -1 }, skip, limit);
+    return this.temperatureService.find(
+      null,
+      null,
+      { timestamp: -1 },
+      skip,
+      limit,
+    );
   }
 
   @ApiExcludeEndpoint()
   @ApiOperation(API_DOC.operation.findLast)
   @ApiOkResponse({ ...API_DOC.responseOk.findLast, type: Temperature })
   @Get('last')
-  findLast(
-  ): Promise<ITemperature> {
-    return this.temperatureService.findOne(null, { temperature: 1, timestamp: 1, _id: 0 }, { timestamp: -1 });
+  findLast(): Promise<ITemperature> {
+    return this.temperatureService.findOne(
+      null,
+      { temperature: 1, timestamp: 1, _id: 0 },
+      { timestamp: -1 },
+    );
   }
 
   @ApiOperation({ ...API_DOC.operation.create })

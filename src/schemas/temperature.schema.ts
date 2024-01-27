@@ -10,7 +10,7 @@ export class Temperature implements ITemperature {
   __v: number;
 
   @Prop()
-  temperature: Number;
+  temperature: number;
 
   @Prop()
   timestamp: Date;

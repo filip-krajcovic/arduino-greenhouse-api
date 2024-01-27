@@ -10,7 +10,7 @@ export class Humidity implements IHumidity {
 
   @IsNumber()
   @ApiProperty(API_DOC.property.humidityDto.humidity)
-  humidity: Number;
+  humidity: number;
 
   @IsDateString()
   @ApiProperty(API_DOC.property.humidityDto.timestamp)

@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
+
 import { IsDateString, IsNumber, IsString } from 'class-validator';
+
 import { API_DOC } from './soli-moisture.constants';
 import { ISoilMoisture } from './soli-moisture.interface';
 
@@ -10,7 +12,7 @@ export class SoilMoisture implements ISoilMoisture {
 
   @IsNumber()
   @ApiProperty(API_DOC.property.soilMoistureDto.soilMoisture)
-  soilMoisture: Number;
+  soilMoisture: number;
 
   @IsDateString()
   @ApiProperty(API_DOC.property.soilMoistureDto.timestamp)

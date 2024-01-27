@@ -5,14 +5,24 @@ export interface ITemperatureService {
   find(
     filter: FilterQuery<ITemperature>,
     projection?: ProjectionType<any>,
-    sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+    sort?:
+      | string
+      | { [key: string]: SortOrder | { $meta: any } }
+      | [string, SortOrder][]
+      | undefined
+      | null,
     skip?: number,
     limit?: number,
   ): Promise<Array<ITemperature>>;
   findOne(
     filter: FilterQuery<ITemperature>,
     projection?: ProjectionType<any>,
-    sort?: string | { [key: string]: SortOrder | { $meta: any } } | [string, SortOrder][] | undefined | null,
+    sort?:
+      | string
+      | { [key: string]: SortOrder | { $meta: any } }
+      | [string, SortOrder][]
+      | undefined
+      | null,
   ): Promise<ITemperature>;
   findById(id: string): Promise<ITemperature>;
   create(dto: ITemperature): Promise<ITemperature>;

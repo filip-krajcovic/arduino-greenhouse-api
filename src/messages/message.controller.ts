@@ -43,8 +43,7 @@ export class MessageController {
   @ApiOperation(API_DOC.operation.count)
   @ApiOkResponse({ ...API_DOC.responseOk.count, type: Number })
   @Get('count')
-  count(
-  ): Promise<number> {
+  count(): Promise<number> {
     return this.messageService.count(null);
   }
 

@@ -10,7 +10,7 @@ export class SoilMoisture implements ISoilMoisture {
   __v: number;
 
   @Prop()
-  soilMoisture: Number;
+  soilMoisture: number;
 
   @Prop()
   timestamp: Date;

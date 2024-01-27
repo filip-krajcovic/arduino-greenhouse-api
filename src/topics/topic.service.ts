@@ -1,5 +1,4 @@
-import { Inject, Injectable, Scope } from '@nestjs/common';
-import { ITopic } from './topic.interface';
+import { Inject, Injectable } from '@nestjs/common';
 import { ITopicService } from './topic.service.interface';
 import { MQTT_CLIENT } from '../mqtt/mqtt.constants';
 import { MqttClient } from 'mqtt';

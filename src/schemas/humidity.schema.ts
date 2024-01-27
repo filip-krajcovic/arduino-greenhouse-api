@@ -12,7 +12,7 @@ export class Humidity implements IHumidity {
   __v: number;
 
   @Prop()
-  humidity: Number;
+  humidity: number;
 
   @Prop()
   timestamp: Date;

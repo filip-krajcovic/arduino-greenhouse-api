@@ -6,7 +6,9 @@ import { Humidity, HumiditySchema } from '../schemas/humidity.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Humidity.name, schema: HumiditySchema }]),
+    MongooseModule.forFeature([
+      { name: Humidity.name, schema: HumiditySchema },
+    ]),
   ],
   controllers: [HumidityController],
   providers: [HumidityService],
