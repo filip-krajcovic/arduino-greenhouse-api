@@ -98,19 +98,16 @@ export class AppService {
       case Topics.pump: {
         const value: IWindow = { state: dto };
         this.savePump(value);
-        this.saveMessage(value);
         break;
       }
       case Topics.window: {
         const value: IWindow = { state: dto };
         this.saveWindow(value);
-        this.saveMessage(value);
         break;
       }
       case Topics.light: {
         const value: ILight = { state: dto };
         this.saveLight(value);
-        this.saveMessage(value);
         break;
       }
       case Topics.timer: {
