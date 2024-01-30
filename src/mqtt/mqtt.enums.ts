@@ -5,12 +5,12 @@ export enum Events {
 }
 
 export enum Topics {
-  humidity = 'arduino/humidity',
-  temperature = 'arduino/temperature',
-  soilMoisture = 'arduino/soil-moisture',
-  pump = 'arduino/pump',
-  window = 'arduino/window',
-  light = 'arduino/light',
-  timer = 'arduino/timer',
+  humidity = 'arduino/humidity/v2',
+  temperature = 'arduino/temperature/v2',
+  soilMoisture = 'arduino/soil-moisture/v2',
+  pump = 'arduino/pump/v2',
+  window = 'arduino/window/v2',
+  light = 'arduino/light/v2',
+  timer = 'arduino/timer/v2',
   message = 'message',
 }
