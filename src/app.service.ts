@@ -1,26 +1,29 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { MQTT_CLIENT } from './mqtt/mqtt.constants';
-import { MqttClient } from 'mqtt';
-import { Events, Topics } from './mqtt/mqtt.enums';
-import { MessageService } from './messages/message.service';
-import { IMessage } from './messages/message.interface';
 import { ConfigService } from '@nestjs/config';
+
+import { MqttClient } from 'mqtt';
+
 import { ENV } from './app.constants';
-import { HumidityService } from './humidity/humidity.service';
-import { TemperatureService } from './temperature/temperature.service';
-import { SoilMoistureService } from './soli-moisture/soli-moisture.service';
+
 import { IHumidity } from './humidity/humidity.interface';
-import { ITemperature } from './temperature/temperature.interface';
-import { ISoilMoisture } from './soli-moisture/soli-moisture.interface';
-import { TopicService } from './topics/topic.service';
-import { PumpService } from './pump/pump.service';
-import { WindowService } from './window/window.service';
-import { LightService } from './light/light.service';
-import { IPump } from './pump/pump.interface';
-import { IWindow } from './window/window.interface';
+import { HumidityService } from './humidity/humidity.service';
 import { ILight } from './light/light.interface';
-import { ScheduleService } from './schedule/schedule.service';
+import { LightService } from './light/light.service';
+import { IMessage } from './messages/message.interface';
+import { MessageService } from './messages/message.service';
+import { MQTT_CLIENT } from './mqtt/mqtt.constants';
+import { Events, Topics } from './mqtt/mqtt.enums';
+import { IPump } from './pump/pump.interface';
+import { PumpService } from './pump/pump.service';
 import { ISchedule } from './schedule/schedule.interface';
+import { ScheduleService } from './schedule/schedule.service';
+import { ISoilMoisture } from './soli-moisture/soli-moisture.interface';
+import { SoilMoistureService } from './soli-moisture/soli-moisture.service';
+import { ITemperature } from './temperature/temperature.interface';
+import { TemperatureService } from './temperature/temperature.service';
+import { TopicService } from './topics/topic.service';
+import { IWindow } from './window/window.interface';
+import { WindowService } from './window/window.service';
 
 @Injectable()
 export class AppService {
@@ -121,10 +124,6 @@ export class AppService {
         break;
       }
       case Topics.message: {
-        this.saveMessage(dto);
-        break;
-      }
-      default: {
         this.saveMessage(dto);
         break;
       }
