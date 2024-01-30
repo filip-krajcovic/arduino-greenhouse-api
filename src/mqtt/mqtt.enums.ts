@@ -5,9 +5,9 @@ export enum Events {
 }
 
 export enum Topics {
-  humidity = 'arduino/humidity/v2',
-  temperature = 'arduino/temperature/v2',
-  soilMoisture = 'arduino/soil-moisture/v2',
+  humidity = 'arduino/humidity/v3',
+  temperature = 'arduino/temperature/v3',
+  soilMoisture = 'arduino/soil-moisture/v3',
   pump = 'arduino/pump/v2',
   window = 'arduino/window/v2',
   light = 'arduino/light/v2',
